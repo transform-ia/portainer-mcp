@@ -30,7 +30,10 @@ RUN CGO_ENABLED=0 GOOS=linux go build \
     ./cmd/portainer-mcp
 
 # Stage 2: Compress with UPX
-FROM ghcr.io/crazy-max/upx:latest AS compressor
+FROM alpine:latest AS compressor
+
+# Install UPX
+RUN apk add --no-cache upx
 
 COPY --from=builder /build/portainer-mcp /portainer-mcp
 
