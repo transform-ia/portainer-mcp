@@ -196,7 +196,8 @@ func (s *PortainerMCPServer) Start() error {
 // Returns:
 //   - An error if the server fails to start
 func (s *PortainerMCPServer) StartHTTP(addr string) error {
-	return server.ServeHTTPSSE(s.srv, addr)
+	sseServer := server.NewSSEServer(s.srv)
+	return sseServer.Start(addr)
 }
 
 // addToolIfExists adds a tool to the server if it exists in the tools map
