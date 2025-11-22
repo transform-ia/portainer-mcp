@@ -93,6 +93,7 @@ type serverOptions struct {
 	client              PortainerClient
 	readOnly            bool
 	disableVersionCheck bool
+	basePath            string
 }
 
 // WithClient sets a custom client for the server.
@@ -116,6 +117,15 @@ func WithReadOnly(readOnly bool) ServerOption {
 func WithDisableVersionCheck(disable bool) ServerOption {
 	return func(opts *serverOptions) {
 		opts.disableVersionCheck = disable
+	}
+}
+
+// WithBasePath sets a custom base path for the Portainer API.
+// This is useful when Portainer is hosted at a subpath (e.g., /portainer).
+// The default base path is /api if not specified.
+func WithBasePath(basePath string) ServerOption {
+	return func(opts *serverOptions) {
+		opts.basePath = basePath
 	}
 }
 
@@ -154,7 +164,12 @@ func NewPortainerMCPServer(serverURL, token, toolsPath string, options ...Server
 	if opts.client != nil {
 		portainerClient = opts.client
 	} else {
-		portainerClient = client.NewPortainerClient(serverURL, token, client.WithSkipTLSVerify(true))
+		// Build client options
+		clientOpts := []client.ClientOption{client.WithSkipTLSVerify(true)}
+		if opts.basePath != "" {
+			clientOpts = append(clientOpts, client.WithBasePath(opts.basePath))
+		}
+		portainerClient = client.NewPortainerClient(serverURL, token, clientOpts...)
 	}
 
 	if !opts.disableVersionCheck {

@@ -28,6 +28,7 @@ func main() {
 	toolsFlag := flag.String("tools", "", "The path to the tools YAML file")
 	readOnlyFlag := flag.Bool("read-only", false, "Run in read-only mode")
 	disableVersionCheckFlag := flag.Bool("disable-version-check", false, "Disable Portainer server version check")
+	basePathFlag := flag.String("base-path", "", "Custom base path for the Portainer API (e.g., '/portainer/api' for subpath deployments)")
 	httpFlag := flag.Bool("http", false, "Enable HTTP/SSE transport instead of stdio")
 	addrFlag := flag.String("addr", ":3000", "Address to listen on when using HTTP transport (e.g., ':3000' or '0.0.0.0:3000')")
 
@@ -65,11 +66,21 @@ func main() {
 		Str("tools-path", toolsPath).
 		Bool("read-only", *readOnlyFlag).
 		Bool("disable-version-check", *disableVersionCheckFlag).
+		Str("base-path", *basePathFlag).
 		Str("transport", transport).
 		Str("addr", *addrFlag).
 		Msg("starting MCP server")
 
-	server, err := mcp.NewPortainerMCPServer(*serverFlag, *tokenFlag, toolsPath, mcp.WithReadOnly(*readOnlyFlag), mcp.WithDisableVersionCheck(*disableVersionCheckFlag))
+	// Build server options
+	serverOpts := []mcp.ServerOption{
+		mcp.WithReadOnly(*readOnlyFlag),
+		mcp.WithDisableVersionCheck(*disableVersionCheckFlag),
+	}
+	if *basePathFlag != "" {
+		serverOpts = append(serverOpts, mcp.WithBasePath(*basePathFlag))
+	}
+
+	server, err := mcp.NewPortainerMCPServer(*serverFlag, *tokenFlag, toolsPath, serverOpts...)
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed to create server")
 	}

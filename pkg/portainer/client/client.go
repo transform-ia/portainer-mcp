@@ -52,6 +52,7 @@ type ClientOption func(*clientOptions)
 // clientOptions holds configuration options for the PortainerClient.
 type clientOptions struct {
 	skipTLSVerify bool
+	basePath      string
 }
 
 // WithSkipTLSVerify configures whether to skip TLS certificate verification.
@@ -59,6 +60,15 @@ type clientOptions struct {
 func WithSkipTLSVerify(skip bool) ClientOption {
 	return func(o *clientOptions) {
 		o.skipTLSVerify = skip
+	}
+}
+
+// WithBasePath configures a custom base path for the Portainer API.
+// This is useful when Portainer is hosted at a subpath (e.g., /portainer).
+// The default base path is /api if not specified.
+func WithBasePath(basePath string) ClientOption {
+	return func(o *clientOptions) {
+		o.basePath = basePath
 	}
 }
 
@@ -75,13 +85,23 @@ func WithSkipTLSVerify(skip bool) ClientOption {
 func NewPortainerClient(serverURL string, token string, opts ...ClientOption) *PortainerClient {
 	options := clientOptions{
 		skipTLSVerify: false, // Default to secure TLS verification
+		basePath:      "/api", // Default base path
 	}
 
 	for _, opt := range opts {
 		opt(&options)
 	}
 
+	// Build client options for the underlying client
+	var clientOpts []client.ClientOption
+	if options.skipTLSVerify {
+		clientOpts = append(clientOpts, client.WithSkipTLSVerify(options.skipTLSVerify))
+	}
+	if options.basePath != "/api" {
+		clientOpts = append(clientOpts, client.WithBasePath(options.basePath))
+	}
+
 	return &PortainerClient{
-		cli: client.NewPortainerClient(serverURL, token, client.WithSkipTLSVerify(options.skipTLSVerify)),
+		cli: client.NewPortainerClient(serverURL, token, clientOpts...),
 	}
 }
