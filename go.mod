@@ -104,3 +104,5 @@ require (
 	sigs.k8s.io/yaml v1.4.0 // indirect
 
 )
+
+replace github.com/portainer/client-api-go/v2 => github.com/transform-ia/client-api-go/v2 v2.31.3-0.20251122000000-137c4a0cae47
