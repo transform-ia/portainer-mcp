@@ -3,6 +3,9 @@ name: Go Mod Tidy
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   tidy:
     runs-on: ubuntu-latest
