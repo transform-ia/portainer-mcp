@@ -30,7 +30,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build \
     ./cmd/portainer-mcp
 
 # Stage 2: Compress with UPX
-FROM ghcr.io/transform-ia/upx-image:latest AS compressor
+FROM ghcr.io/transform-ia/upx-image:5.0.2 AS compressor
 
 COPY --from=builder /build/portainer-mcp /portainer-mcp
 
@@ -40,7 +40,7 @@ COPY --from=builder /build/portainer-mcp /portainer-mcp
 RUN upx --best --lzma /portainer-mcp
 
 # Stage 3: Final minimal image
-FROM alpine:latest
+FROM alpine:3.22.1
 
 # Add ca-certificates for HTTPS connections
 RUN apk add --no-cache ca-certificates
