@@ -13,7 +13,8 @@ tools:
       idempotentHint: true
       openWorldHint: false
   - name: createAccessGroup
-    description: Create a new access group. Use access groups when you want to define
+    description:
+      Create a new access group. Use access groups when you want to define
       accesses on more than one environment. Otherwise, define the accesses on
       the environment level.
     parameters:
@@ -22,8 +23,9 @@ tools:
         type: string
         required: true
       - name: environmentIds
-        description: "The IDs of the environments that are part of the access group.
-          Must include all the environment IDs that are part of the group - this
+        description:
+          "The IDs of the environments that are part of the access group. Must
+          include all the environment IDs that are part of the group - this
           includes new environments and the existing environments that are
           already associated with the group. Example: [1, 2, 3]"
         type: array
@@ -60,7 +62,8 @@ tools:
         type: number
         required: true
       - name: userAccesses
-        description: "The user accesses that are associated with all the environments in
+        description:
+          "The user accesses that are associated with all the environments in
           the access group. The ID is the user ID of the user in Portainer.
           Example: [{id: 1, access: 'environment_administrator'}, {id: 2,
           access: 'standard_user'}]"
@@ -73,7 +76,8 @@ tools:
               description: The ID of the user
               type: number
             access:
-              description: The access level of the user. Can be environment_administrator,
+              description:
+                The access level of the user. Can be environment_administrator,
                 helpdesk_user, standard_user, readonly_user or operator_user
               type: string
               enum:
@@ -96,7 +100,8 @@ tools:
         type: number
         required: true
       - name: teamAccesses
-        description: "The team accesses that are associated with all the environments in
+        description:
+          "The team accesses that are associated with all the environments in
           the access group. The ID is the team ID of the team in Portainer.
           Example: [{id: 1, access: 'environment_administrator'}, {id: 2,
           access: 'standard_user'}]"
@@ -109,7 +114,8 @@ tools:
               description: The ID of the team
               type: number
             access:
-              description: The access level of the team. Can be environment_administrator,
+              description:
+                The access level of the team. Can be environment_administrator,
                 helpdesk_user, standard_user, readonly_user or operator_user
               type: string
               enum:
@@ -177,10 +183,10 @@ tools:
         required: true
       - name: tagIds
         description: >-
-          The IDs of the tags that are associated with the environment.
-          Must include all the tag IDs that should be associated with the environment - this includes new tags and existing tags.
-          Providing an empty array will remove all tags.
-          Example: [1, 2, 3]
+          The IDs of the tags that are associated with the environment. Must
+          include all the tag IDs that should be associated with the environment
+          - this includes new tags and existing tags. Providing an empty array
+          will remove all tags. Example: [1, 2, 3]
         type: array
         required: true
         items:
@@ -200,11 +206,12 @@ tools:
         required: true
       - name: userAccesses
         description: >-
-          The user accesses that are associated with the environment.
-          The ID is the user ID of the user in Portainer.
-          Must include all the access policies for all users that should be associated with the environment.
-          Providing an empty array will remove all user accesses.
-          Example: [{id: 1, access: 'environment_administrator'}, {id: 2, access: 'standard_user'}]
+          The user accesses that are associated with the environment. The ID is
+          the user ID of the user in Portainer. Must include all the access
+          policies for all users that should be associated with the environment.
+          Providing an empty array will remove all user accesses. Example: [{id:
+          1, access: 'environment_administrator'}, {id: 2, access:
+          'standard_user'}]
         type: array
         required: true
         items:
@@ -237,11 +244,12 @@ tools:
         required: true
       - name: teamAccesses
         description: >-
-          The team accesses that are associated with the environment.
-          The ID is the team ID of the team in Portainer.
-          Must include all the access policies for all teams that should be associated with the environment.
-          Providing an empty array will remove all team accesses.
-          Example: [{id: 1, access: 'environment_administrator'}, {id: 2, access: 'standard_user'}]
+          The team accesses that are associated with the environment. The ID is
+          the team ID of the team in Portainer. Must include all the access
+          policies for all teams that should be associated with the environment.
+          Providing an empty array will remove all team accesses. Example: [{id:
+          1, access: 'environment_administrator'}, {id: 2, access:
+          'standard_user'}]
         type: array
         required: true
         items:
@@ -269,7 +277,9 @@ tools:
   ## An environment group is the equivalent of an Edge Group in Portainer.
   ## ------------------------------------------------------------
   - name: createEnvironmentGroup
-    description: Create a new environment group. Environment groups are the equivalent of Edge Groups in Portainer.
+    description:
+      Create a new environment group. Environment groups are the equivalent of
+      Edge Groups in Portainer.
     parameters:
       - name: name
         description: The name of the environment group
@@ -288,7 +298,9 @@ tools:
       idempotentHint: false
       openWorldHint: false
   - name: listEnvironmentGroups
-    description: List all available environment groups. Environment groups are the equivalent of Edge Groups in Portainer.
+    description:
+      List all available environment groups. Environment groups are the
+      equivalent of Edge Groups in Portainer.
     annotations:
       title: List Environment Groups
       readOnlyHint: true
@@ -296,7 +308,9 @@ tools:
       idempotentHint: true
       openWorldHint: false
   - name: updateEnvironmentGroupName
-    description: Update the name of an environment group. Environment groups are the equivalent of Edge Groups in Portainer.
+    description:
+      Update the name of an environment group. Environment groups are the
+      equivalent of Edge Groups in Portainer.
     parameters:
       - name: id
         description: The ID of the environment group to update
@@ -313,7 +327,9 @@ tools:
       idempotentHint: true
       openWorldHint: false
   - name: updateEnvironmentGroupEnvironments
-    description: Update the environments associated with an environment group. Environment groups are the equivalent of Edge Groups in Portainer.
+    description:
+      Update the environments associated with an environment group. Environment
+      groups are the equivalent of Edge Groups in Portainer.
     parameters:
       - name: id
         description: The ID of the environment group to update
@@ -321,8 +337,8 @@ tools:
         required: true
       - name: environmentIds
         description: >-
-          The IDs of the environments that should be part of the group.
-          Must include all environment IDs that should be associated with the group.
+          The IDs of the environments that should be part of the group. Must
+          include all environment IDs that should be associated with the group.
           Providing an empty array will remove all environments from the group.
           Example: [1, 2, 3]
         type: array
@@ -336,7 +352,9 @@ tools:
       idempotentHint: true
       openWorldHint: false
   - name: updateEnvironmentGroupTags
-    description: Update the tags associated with an environment group. Environment groups are the equivalent of Edge Groups in Portainer.
+    description:
+      Update the tags associated with an environment group. Environment groups
+      are the equivalent of Edge Groups in Portainer.
     parameters:
       - name: id
         description: The ID of the environment group to update
@@ -344,10 +362,10 @@ tools:
         required: true
       - name: tagIds
         description: >-
-          The IDs of the tags that should be associated with the group.
-          Must include all tag IDs that should be associated with the group.
-          Providing an empty array will remove all tags from the group.
-          Example: [1, 2, 3]
+          The IDs of the tags that should be associated with the group. Must
+          include all tag IDs that should be associated with the group.
+          Providing an empty array will remove all tags from the group. Example:
+          [1, 2, 3]
         type: array
         required: true
         items:
@@ -395,21 +413,23 @@ tools:
     description: Create a new stack
     parameters:
       - name: name
-        description: Name of the stack. Stack name must only consist of lowercase alpha
+        description:
+          Name of the stack. Stack name must only consist of lowercase alpha
           characters, numbers, hyphens, or underscores as well as start with a
           lowercase character or number
         type: string
         required: true
       - name: file
         description: >-
-          Content of the stack file. The file must be a valid
-          docker-compose.yml file. example: services:
+          Content of the stack file. The file must be a valid docker-compose.yml
+          file. example: services:
            web:
              image:nginx
         type: string
         required: true
       - name: environmentGroupIds
-        description: "The IDs of the environment groups that the stack belongs to. Must
+        description:
+          "The IDs of the environment groups that the stack belongs to. Must
           include at least one environment group ID. Example: [1, 2, 3]"
         type: array
         required: true
@@ -430,15 +450,16 @@ tools:
         required: true
       - name: file
         description: >-
-          Content of the stack file. The file must be a valid
-          docker-compose.yml file. example: version: 3
+          Content of the stack file. The file must be a valid docker-compose.yml
+          file. example: version: 3
            services:
              web:
                image:nginx
         type: string
         required: true
       - name: environmentGroupIds
-        description: "The IDs of the environment groups that the stack belongs to. Must
+        description:
+          "The IDs of the environment groups that the stack belongs to. Must
           include at least one environment group ID. Example: [1, 2, 3]"
         type: array
         required: true
@@ -521,10 +542,11 @@ tools:
         type: number
         required: true
       - name: userIds
-        description: "The IDs of the users that are part of the team. Must include all
-          the user IDs that are part of the team - this includes new users and
-          the existing users that are already associated with the team. Example:
-          [1, 2, 3]"
+        description:
+          "The IDs of the users that are part of the team. Must include all the
+          user IDs that are part of the team - this includes new users and the
+          existing users that are already associated with the team. Example: [1,
+          2, 3]"
         type: array
         required: true
         items:
@@ -571,8 +593,11 @@ tools:
   ## Docker Proxy
   ## ------------------------------------------------------------
   - name: dockerProxy
-    description: Proxy Docker requests to a specific Portainer environment.
-      This tool can be used with any Docker API operation as documented in the Docker Engine API specification (https://docs.docker.com/reference/api/engine/version/v1.48/).
+    description:
+      Proxy Docker requests to a specific Portainer environment. This tool can
+      be used with any Docker API operation as documented in the Docker Engine
+      API specification
+      (https://docs.docker.com/reference/api/engine/version/v1.48/).
     parameters:
       - name: environmentId
         description: The ID of the environment to proxy Docker requests to
@@ -589,12 +614,16 @@ tools:
           - DELETE
           - HEAD
       - name: dockerAPIPath
-        description: "The route of the Docker API operation to proxy. Must include the leading slash. Example: /containers/json"
+        description:
+          "The route of the Docker API operation to proxy. Must include the
+          leading slash. Example: /containers/json"
         type: string
         required: true
       - name: queryParams
-        description: "The query parameters to include in the Docker API operation. Must be an array of key-value pairs.
-          Example: [{key: 'all', value: 'true'}, {key: 'filter', value: 'dangling'}]"
+        description:
+          "The query parameters to include in the Docker API operation. Must be
+          an array of key-value pairs. Example: [{key: 'all', value: 'true'},
+          {key: 'filter', value: 'dangling'}]"
         type: array
         required: false
         items:
@@ -607,8 +636,10 @@ tools:
               type: string
               description: The value of the query parameter
       - name: headers
-        description: "The headers to include in the Docker API operation. Must be an array of key-value pairs.
-          Example: [{key: 'Content-Type', value: 'application/json'}]"
+        description:
+          "The headers to include in the Docker API operation. Must be an array
+          of key-value pairs. Example: [{key: 'Content-Type', value:
+          'application/json'}]"
         type: array
         required: false
         items:
@@ -621,7 +652,8 @@ tools:
               type: string
               description: The value of the header
       - name: body
-        description: "The body of the Docker API operation to proxy. Must be a JSON string.
+        description:
+          "The body of the Docker API operation to proxy. Must be a JSON string.
           Example: {'Image': 'nginx:latest', 'Name': 'my-container'}"
         type: string
         required: false
@@ -635,15 +667,19 @@ tools:
   ## Kubernetes Proxy
   ## ------------------------------------------------------------
   - name: kubernetesProxy
-    description: Proxy Kubernetes requests to a specific Portainer environment.
-      This tool can be used with any Kubernetes API operation as documented in the Kubernetes API specification (https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/).
+    description:
+      Proxy Kubernetes requests to a specific Portainer environment. This tool
+      can be used with any Kubernetes API operation as documented in the
+      Kubernetes API specification
+      (https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/).
     parameters:
       - name: environmentId
         description: The ID of the environment to proxy Kubernetes requests to
         type: number
         required: true
       - name: method
-        description: The HTTP method to use to proxy the Kubernetes API operation
+        description:
+          The HTTP method to use to proxy the Kubernetes API operation
         type: string
         required: true
         enum:
@@ -653,12 +689,16 @@ tools:
           - DELETE
           - HEAD
       - name: kubernetesAPIPath
-        description: "The route of the Kubernetes API operation to proxy. Must include the leading slash. Example: /api/v1/namespaces/default/pods"
+        description:
+          "The route of the Kubernetes API operation to proxy. Must include the
+          leading slash. Example: /api/v1/namespaces/default/pods"
         type: string
         required: true
       - name: queryParams
-        description: "The query parameters to include in the Kubernetes API operation. Must be an array of key-value pairs.
-          Example: [{key: 'watch', value: 'true'}, {key: 'fieldSelector', value: 'metadata.name=my-pod'}]"
+        description:
+          "The query parameters to include in the Kubernetes API operation. Must
+          be an array of key-value pairs. Example: [{key: 'watch', value:
+          'true'}, {key: 'fieldSelector', value: 'metadata.name=my-pod'}]"
         type: array
         required: false
         items:
@@ -671,8 +711,10 @@ tools:
               type: string
               description: The value of the query parameter
       - name: headers
-        description: "The headers to include in the Kubernetes API operation. Must be an array of key-value pairs.
-          Example: [{key: 'Content-Type', value: 'application/json'}]"
+        description:
+          "The headers to include in the Kubernetes API operation. Must be an
+          array of key-value pairs. Example: [{key: 'Content-Type', value:
+          'application/json'}]"
         type: array
         required: false
         items:
@@ -685,8 +727,10 @@ tools:
               type: string
               description: The value of the header
       - name: body
-        description: "The body of the Kubernetes API operation to proxy. Must be a JSON string.
-          Example: {'apiVersion': 'v1', 'kind': 'Pod', 'metadata': {'name': 'my-pod'}}"
+        description:
+          "The body of the Kubernetes API operation to proxy. Must be a JSON
+          string. Example: {'apiVersion': 'v1', 'kind': 'Pod', 'metadata':
+          {'name': 'my-pod'}}"
         type: string
         required: false
     annotations:
@@ -697,25 +741,32 @@ tools:
       openWorldHint: false
   - name: getKubernetesResourceStripped
     description: >-
-      Proxy GET requests to a specific Portainer environment for Kubernetes resources,
-      and automatically strips verbose metadata fields (such as 'managedFields') from the API response
-      to reduce its size. This tool is intended for retrieving Kubernetes resource
-      information where a leaner payload is desired.
-      This tool can be used with any GET Kubernetes API operation as documented
-      in the Kubernetes API specification (https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/).
-      For other methods (POST, PUT, DELETE, HEAD), use the 'kubernetesProxy' tool.
+      Proxy GET requests to a specific Portainer environment for Kubernetes
+      resources, and automatically strips verbose metadata fields (such as
+      'managedFields') from the API response to reduce its size. This tool is
+      intended for retrieving Kubernetes resource information where a leaner
+      payload is desired. This tool can be used with any GET Kubernetes API
+      operation as documented in the Kubernetes API specification
+      (https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/).
+      For other methods (POST, PUT, DELETE, HEAD), use the 'kubernetesProxy'
+      tool.
     parameters:
       - name: environmentId
-        description: The ID of the environment to proxy Kubernetes GET requests to
+        description:
+          The ID of the environment to proxy Kubernetes GET requests to
         type: number
         required: true
       - name: kubernetesAPIPath
-        description: "The route of the Kubernetes API GET operation to proxy. Must include the leading slash. Example: /api/v1/namespaces/default/pods"
+        description:
+          "The route of the Kubernetes API GET operation to proxy. Must include
+          the leading slash. Example: /api/v1/namespaces/default/pods"
         type: string
         required: true
       - name: queryParams
-        description: "The query parameters to include in the Kubernetes API operation. Must be an array of key-value pairs.
-          Example: [{key: 'watch', value: 'true'}, {key: 'fieldSelector', value: 'metadata.name=my-pod'}]"
+        description:
+          "The query parameters to include in the Kubernetes API operation. Must
+          be an array of key-value pairs. Example: [{key: 'watch', value:
+          'true'}, {key: 'fieldSelector', value: 'metadata.name=my-pod'}]"
         type: array
         required: false
         items:
@@ -728,8 +779,10 @@ tools:
               type: string
               description: The value of the query parameter
       - name: headers
-        description: "The headers to include in the Kubernetes API operation. Must be an array of key-value pairs.
-          Example: [{key: 'Accept', value: 'application/json'}]"
+        description:
+          "The headers to include in the Kubernetes API operation. Must be an
+          array of key-value pairs. Example: [{key: 'Accept', value:
+          'application/json'}]"
         type: array
         required: false
         items:

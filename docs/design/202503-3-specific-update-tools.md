@@ -3,15 +3,24 @@
 **Date**: 29/03/2025
 
 ### Context
-Initially, resource updates (such as access groups, environments, etc.) were handled through single, multi-purpose update tools that could modify multiple properties at once. This approach led to complex parameter handling and unclear behavior around optional values.
+
+Initially, resource updates (such as access groups, environments, etc.) were
+handled through single, multi-purpose update tools that could modify multiple
+properties at once. This approach led to complex parameter handling and unclear
+behavior around optional values.
 
 ### Decision
-Split update operations into multiple specific tools, each responsible for updating a single property or related set of properties. For example, instead of a single `updateAccessGroup` tool, create separate tools like:
+
+Split update operations into multiple specific tools, each responsible for
+updating a single property or related set of properties. For example, instead of
+a single `updateAccessGroup` tool, create separate tools like:
+
 - `updateAccessGroupName`
 - `updateAccessGroupUserAccesses`
 - `updateAccessGroupTeamAccesses`
 
 ### Rationale
+
 1. **Parameter Clarity**
    - Each tool has clear, required parameters
    - No ambiguity between undefined parameters and empty values
@@ -35,6 +44,7 @@ Split update operations into multiple specific tools, each responsible for updat
 ### Trade-offs
 
 **Benefits**
+
 - Clearer parameter requirements and validation
 - Simpler code without pointer logic
 - Better separation of concerns
@@ -42,6 +52,7 @@ Split update operations into multiple specific tools, each responsible for updat
 - Easier testing and maintenance
 
 **Challenges**
+
 - Multiple API calls needed for updating multiple properties
 - Slightly increased network traffic for multi-property updates
 - More tool definitions to maintain
@@ -50,7 +61,9 @@ Split update operations into multiple specific tools, each responsible for updat
 - Some clients have a hard limit on the number of tools that can be used/enabled
 
 ### Notes
+
 Performance impact of multiple API calls is considered acceptable given:
+
 - Non-performance-critical context
 - Relatively low frequency of update operations
 - Benefits of simpler code and clearer behavior outweigh the overhead
