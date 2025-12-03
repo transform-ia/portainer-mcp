@@ -1,0 +1,15 @@
+---
+# Relax line-length rule to 120 characters
+MD013:
+  line_length: 120
+  code_blocks: false
+  tables: false
+
+# Allow bare URLs
+MD034: false
+
+# Allow emphasis as heading
+MD036: false
+
+# Allow fenced code without language
+MD040: false
