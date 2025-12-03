@@ -1,7 +1,10 @@
 ---
-# Relax line-length rule to 120 characters
+# Allow heading level increments
+MD001: false
+
+# Relax line-length rule to 160 characters
 MD013:
-  line_length: 120
+  line_length: 160
   code_blocks: false
   tables: false
 
