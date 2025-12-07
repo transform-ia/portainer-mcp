@@ -2,20 +2,20 @@
 
 **Date**: 29/03/2025
 
-### Context
+## Context
 
 Initially, listing Portainer resources (environments, environment groups,
 stacks, etc.) was implemented using MCP resources. The project needed to
 evaluate whether this was the optimal approach given the current usage patterns
 and client constraints.
 
-### Decision
+## Decision
 
 Replace MCP resources with tools for retrieving Portainer resources. For
 example, instead of exposing environments as MCP resources, provide a
 `listEnvironments` tool that the model can invoke.
 
-### Rationale
+## Rationale
 
 1. **Client Compatibility**
    - Project currently relies on existing MCP clients (e.g., Claude Desktop)
@@ -38,22 +38,22 @@ example, instead of exposing environments as MCP resources, provide a
    - Models can determine when and what resources to list
    - Approval flow is streamlined through tool invocation
 
-### Trade-offs
+## Trade-offs
 
-**Benefits**
+### Benefits
 
 - Improved user experience through natural language requests
 - Faster testing and iteration cycles
 - Better alignment with existing client capabilities
 - More direct model control over resource access
 
-**Challenges**
+### Challenges
 
 - Potential loss of MCP resource-specific features
 - May need to reconsider if application-driven selection becomes necessary or
   when we'll need to build our own client
 
-### References
+## References
 
 - <https://spec.modelcontextprotocol.io/specification/2024-11-05/server/resources/#user-interaction-model>
 - <https://spec.modelcontextprotocol.io/specification/2024-11-05/server/tools/#user-interaction-model>

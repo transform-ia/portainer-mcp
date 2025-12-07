@@ -2,18 +2,18 @@
 
 **Date**: 29/03/2025
 
-### Context
+## Context
 
 The project needs to define and maintain a set of tools that interact with
 Portainer. Initially, these tool definitions could have been hardcoded within
 the application code.
 
-### Decision
+## Decision
 
 Tool definitions are externalized into a separate `tools.yaml` file instead of
 maintaining them in the source code.
 
-### Rationale
+## Rationale
 
 1. **Improved Readability**
    - Tool definitions often contain multi-line descriptions and complex
@@ -39,9 +39,9 @@ maintaining them in the source code.
    - Requires consideration of backward compatibility
    - Enables tracking of breaking changes in tool definitions
 
-### Trade-offs
+## Trade-offs
 
-**Benefits**
+### Benefits
 
 - More flexible maintenance of tool definitions
 - Better separation of concerns
@@ -50,7 +50,7 @@ maintaining them in the source code.
 - Improved visibility and security through externalized tool definitions, making
   it easier for users to audit and understand potential prompt injection risks
 
-**Challenges**
+### Challenges
 
 - Need to handle file loading and validation
 - Must ensure file distribution with the binary

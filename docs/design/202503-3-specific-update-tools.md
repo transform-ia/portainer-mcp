@@ -2,14 +2,14 @@
 
 **Date**: 29/03/2025
 
-### Context
+## Context
 
 Initially, resource updates (such as access groups, environments, etc.) were
 handled through single, multi-purpose update tools that could modify multiple
 properties at once. This approach led to complex parameter handling and unclear
 behavior around optional values.
 
-### Decision
+## Decision
 
 Split update operations into multiple specific tools, each responsible for
 updating a single property or related set of properties. For example, instead of
@@ -19,7 +19,7 @@ a single `updateAccessGroup` tool, create separate tools like:
 - `updateAccessGroupUserAccesses`
 - `updateAccessGroupTeamAccesses`
 
-### Rationale
+## Rationale
 
 1. **Parameter Clarity**
    - Each tool has clear, required parameters
@@ -41,9 +41,9 @@ a single `updateAccessGroup` tool, create separate tools like:
    - More explicit about the changes being made
    - Better alignment with natural language commands
 
-### Trade-offs
+## Trade-offs
 
-**Benefits**
+### Benefits
 
 - Clearer parameter requirements and validation
 - Simpler code without pointer logic
@@ -51,7 +51,7 @@ a single `updateAccessGroup` tool, create separate tools like:
 - More explicit and focused tools
 - Easier testing and maintenance
 
-**Challenges**
+### Challenges
 
 - Multiple API calls needed for updating multiple properties
 - Slightly increased network traffic for multi-property updates
@@ -60,7 +60,7 @@ a single `updateAccessGroup` tool, create separate tools like:
 - More tools might clutter the context of the model
 - Some clients have a hard limit on the number of tools that can be used/enabled
 
-### Notes
+## Notes
 
 Performance impact of multiple API calls is considered acceptable given:
 

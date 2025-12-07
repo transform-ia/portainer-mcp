@@ -1,18 +1,4 @@
 ---
-# Allow heading level increments
-MD001: false
-
-# Relax line-length rule to 160 characters
+default: true
 MD013:
-  line_length: 160
-  code_blocks: false
-  tables: false
-
-# Allow bare URLs
-MD034: false
-
-# Allow emphasis as heading
-MD036: false
-
-# Allow fenced code without language
-MD040: false
+  line_length: 140

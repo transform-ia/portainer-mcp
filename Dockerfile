@@ -1,6 +1,6 @@
 # Multi-stage Dockerfile for portainer-mcp with UPX compression
 # Stage 1: Build the Go binary
-FROM golang:1.24.2-alpine AS builder
+FROM golang:1.25.5-alpine3.23 AS builder
 
 WORKDIR /build
 
@@ -40,7 +40,7 @@ COPY --from=builder /build/portainer-mcp /portainer-mcp
 RUN upx --best --lzma /portainer-mcp
 
 # Stage 3: Final minimal image
-FROM alpine:3.22.1
+FROM alpine:3.23.0
 
 # Add ca-certificates for HTTPS connections
 RUN apk add --no-cache ca-certificates

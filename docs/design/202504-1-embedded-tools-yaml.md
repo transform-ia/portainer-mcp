@@ -2,19 +2,19 @@
 
 **Date**: 08/04/2025
 
-### Context
+## Context
 
 After deciding to use an external tools.yaml file for tool definitions (see
 202503-1), there was a need to determine the best distribution method for this
 file. Questions arose about how to ensure the file is available when the
 application runs.
 
-### Decision
+## Decision
 
 Embed the tools.yaml file directly in the binary during the build process, while
 also checking for and using a user-provided version at runtime if available.
 
-### Rationale
+## Rationale
 
 1. **Simplified Distribution**
    - Single binary contains everything needed to run the application
@@ -36,9 +36,9 @@ also checking for and using a user-provided version at runtime if available.
    - External file allows for hotfixes without binary updates
    - Clear separation between default and custom configurations
 
-### Trade-offs
+## Trade-offs
 
-**Benefits**
+### Benefits
 
 - Simpler distribution process
 - Self-contained application
@@ -46,7 +46,7 @@ also checking for and using a user-provided version at runtime if available.
 - Support for user customization
 - Clear fallback mechanism
 
-**Challenges**
+### Challenges
 
 - Slightly larger binary size
 - Need for embedding logic in the build process
